@@ -1,7 +1,13 @@
+// requirements
+const fs = require('fs');
+const generateHTML = require('./generateHTML.js');
 const inquirer = require("inquirer");
-const Intern = require("./intern");
+const Intern = require("./intern.js");
 const Manager = require("./manager.js");
 const team = [];
+
+// inquirer prompts for data input
+
 inquirer
   .prompt([
     {
@@ -109,3 +115,16 @@ function addIntern() {
     menu();
   });
 }
+
+// function for HTML page file generation
+
+const writeFile = data => {
+    fs.writeFile('./index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+      } else {
+            console.log("Team profile created. Refer to index.html.")
+        }
+        })
+    };

@@ -4,6 +4,7 @@ const generateHTML = require('./generateHTML.js');
 const inquirer = require("inquirer");
 const Intern = require("./intern.js");
 const Manager = require("./manager.js");
+const Engineer = require("./engineer.js");
 const team = [];
 
 // inquirer prompts for data input
@@ -23,12 +24,12 @@ inquirer
     {
       type: "input",
       message: "What is the manager's email?",
-      name: email,
+      name: "email",
     },
     {
       type: "input",
       message: "What is the manager's office number?",
-      name: officeNumber,
+      name: "officeNumber",
     },
   ])
   .then((res) => {
@@ -50,7 +51,9 @@ function menu() {
       if (res.action === "addEngineer") {
         addEngineer ()
       } else if (res.action === "addIntern") {
+        addIntern ()
       } else {
+        writeFile(team);
       }
     });
 }
@@ -106,7 +109,7 @@ function addIntern() {
     {
       type: "input",
       message: "What is the intern's school?",
-      name: "gitHub",
+      name: "school",
     },
   ])
   .then((res) => {
@@ -119,7 +122,7 @@ function addIntern() {
 // function for HTML page file generation
 
 const writeFile = data => {
-    fs.writeFile('./index.html', data, err => {
+    fs.writeFile('./index.html', generateHTML(data), err => {
         if (err) {
             console.log(err);
             return;

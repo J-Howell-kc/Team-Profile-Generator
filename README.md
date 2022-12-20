@@ -28,7 +28,7 @@ Answer questions prompted via CLI, open index.html in live server.
 Install and follow license requirements.
 
 ## Tests
-Run index.js via CLI.
+Run npm jest via CLI.
 
 ## Questions 
 ### GitHub Profile link
